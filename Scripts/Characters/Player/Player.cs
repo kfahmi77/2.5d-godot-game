@@ -25,6 +25,7 @@ public partial class Player : CharacterBody3D
         Velocity *= speed;
 
         MoveAndSlide();
+        FlipSprite();
     }
 
     public override void _Input(InputEvent @event)
@@ -43,6 +44,20 @@ public partial class Player : CharacterBody3D
         {
             animationPlayerNode.Play(GameContants.ANIM_MOVE);
         }
+    }
+
+    private void FlipSprite()
+    {
+        bool isNotMovingHorizontal = Math.Abs(Velocity.X) < 0.01;
+
+        if (isNotMovingHorizontal)
+        {
+            return;
+        }
+
+        bool isMovingLeft = Velocity.X < 0;
+        sprite3DNode.FlipH = isMovingLeft;
+
     }
 }
 

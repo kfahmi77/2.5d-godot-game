@@ -1,4 +1,5 @@
 using Godot;
+using my3dmobilegame.Scripts.Utils;
 using System;
 
 public partial class Player : CharacterBody3D
@@ -16,7 +17,7 @@ public partial class Player : CharacterBody3D
 
     public override void _Ready()
     {
-        animationPlayerNode.Play("Idle");
+        animationPlayerNode.Play(GameContants.ANIM_IDLE);
     }
     public override void _Process(double delta)
     {
@@ -29,18 +30,18 @@ public partial class Player : CharacterBody3D
     public override void _Input(InputEvent @event)
     {
         direction = Input.GetVector(
-          "MoveLeft",
-          "MoveRight",
-          "MoveForward",
-          "MoveBackward"
+          GameContants.INPUT_MOVE_LEFT,
+          GameContants.INPUT_MOVE_RIGHT,
+          GameContants.INPUT_MOVE_FORWARD,
+          GameContants.INPUT_MOVE_BACKWARD
          );
         if (direction == Vector2.Zero)
         {
-            animationPlayerNode.Play("Idle");
+            animationPlayerNode.Play(GameContants.ANIM_IDLE);
         }
         else
         {
-            animationPlayerNode.Play("Move");
+            animationPlayerNode.Play(GameContants.ANIM_MOVE);
         }
     }
 }

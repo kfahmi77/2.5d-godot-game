@@ -2,38 +2,32 @@ using Godot;
 using my3dmobilegame.Scripts.Utils;
 using System;
 
-public partial class PlayerMoveState : Node
+public partial class PlayerMoveState : PlayerState
 {
-
-    private Player characterNode;
-    public
-    override void _Ready()
-    {
-        characterNode = GetOwner<Player>();
-        SetPhysicsProcess(false);
-    }
-
     public override void _PhysicsProcess(double delta)
     {
         GD.Print("PlayerMoveState _PhysicsProcess");
         if (characterNode.direction == Vector2.Zero)
         {
             characterNode.stateMachineNode.SwitchState<PlayerIdleState>();
+            return;
         }
+        characterNode.Velocity = new(characterNode.direction.X, 0, characterNode.direction.Y);
+        characterNode.Velocity *= characterNode.speed;
+
+        characterNode.MoveAndSlide();
+        characterNode.FlipSprite();
     }
 
-    public override void _Notification(int what)
+    protected override void EnterState()
     {
-        base._Notification(what);
-        if (what == 5001)
+        characterNode.animationPlayerNode.Play(GameContants.ANIM_MOVE);
+    }
+    public override void _Input(InputEvent @event)
+    {
+        if (Input.IsActionPressed(GameContants.INPUT_DASH))
         {
-            characterNode.animationPlayerNode.Play(GameContants.ANIM_MOVE);
-            SetPhysicsProcess(true);
+            characterNode.stateMachineNode.SwitchState<PlayeDashState>();
         }
-        else if (what == 5002)
-        {
-            SetPhysicsProcess(false);
-        }
-
     }
 }

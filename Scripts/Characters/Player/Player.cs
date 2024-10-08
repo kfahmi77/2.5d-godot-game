@@ -17,14 +17,7 @@ public partial class Player : CharacterBody3D
 
     public Vector2 direction = new();
 
-    public override void _Process(double delta)
-    {
-        Velocity = new(direction.X, 0, direction.Y);
-        Velocity *= speed;
 
-        MoveAndSlide();
-        FlipSprite();
-    }
 
     public override void _Input(InputEvent @event)
     {
@@ -37,7 +30,7 @@ public partial class Player : CharacterBody3D
 
     }
 
-    private void FlipSprite()
+    public void FlipSprite()
     {
         bool isNotMovingHorizontal = Math.Abs(Velocity.X) < 0.01;
 

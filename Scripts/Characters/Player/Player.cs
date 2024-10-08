@@ -1,6 +1,7 @@
 using Godot;
 using my3dmobilegame.Scripts.Utils;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 public partial class Player : CharacterBody3D
 {
@@ -8,17 +9,14 @@ public partial class Player : CharacterBody3D
     [Export] public float speed = 5;
     [Export] public float jumpSpeed = 10;
     [Export] public float gravity = 10;
-    [Export] private AnimationPlayer animationPlayerNode;
-    [Export] private Sprite3D sprite3DNode;
+    [Export] public AnimationPlayer animationPlayerNode;
+    [Export] public Sprite3D sprite3DNode;
+    [Export] public StateMachine stateMachineNode;
 
 
-    private Vector2 direction = new();
 
+    public Vector2 direction = new();
 
-    public override void _Ready()
-    {
-        animationPlayerNode.Play(GameContants.ANIM_IDLE);
-    }
     public override void _Process(double delta)
     {
         Velocity = new(direction.X, 0, direction.Y);
@@ -36,14 +34,7 @@ public partial class Player : CharacterBody3D
           GameContants.INPUT_MOVE_FORWARD,
           GameContants.INPUT_MOVE_BACKWARD
          );
-        if (direction == Vector2.Zero)
-        {
-            animationPlayerNode.Play(GameContants.ANIM_IDLE);
-        }
-        else
-        {
-            animationPlayerNode.Play(GameContants.ANIM_MOVE);
-        }
+
     }
 
     private void FlipSprite()

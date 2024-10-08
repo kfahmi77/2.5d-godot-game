@@ -8,10 +8,12 @@ public partial class PlayerIdleState : Node
      override void _Ready()
     {
         characterNode = GetOwner<Player>();
+        SetPhysicsProcess(false);
     }
 
     public override void _PhysicsProcess(double delta)
     {
+        GD.Print("Player Idle State");
         base._PhysicsProcess(delta);
         if (characterNode.direction != Vector2.Zero)
         {
@@ -26,6 +28,11 @@ public partial class PlayerIdleState : Node
         {
 
             characterNode.animationPlayerNode.Play(GameContants.ANIM_IDLE);
+            SetPhysicsProcess(true);
+        }
+        else if (what == 5002)
+        {
+            SetPhysicsProcess(false);
         }
 
     }

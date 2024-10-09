@@ -1,10 +1,9 @@
-using System;
 using Godot;
 using my3dmobilegame.Scripts.Utils;
 
 
 
-public partial class PlayerState : Node
+public  abstract partial class PlayerState : Node
 {
   protected Player characterNode;
     public
@@ -17,14 +16,14 @@ public partial class PlayerState : Node
      public override void _Notification(int what)
     {
         base._Notification(what);
-        if (what == 5001)
+        if (what == GameContants.NOTIFICATION_ENTER_STATE)
         {
 
             EnterState();
             SetPhysicsProcess(true);
             SetProcessInput(true);
         }
-        else if (what == 5002)
+        else if (what == GameContants.NOTIFICATION_EXIT_STATE)
         {
             SetPhysicsProcess(false);
             SetProcessInput(false);

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b7yu8u7a624vf"]
+[gd_scene load_steps=60 format=3 uid="uid://b7yu8u7a624vf"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Player/Player.cs" id="1_3qsby"]
 [ext_resource type="Texture2D" uid="uid://c7hgd8dbgsmf2" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_7ljqs"]
@@ -40,7 +40,19 @@
 [ext_resource type="Texture2D" uid="uid://cnt2w82a2kjog" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_003.png" id="35_i6b88"]
 [ext_resource type="Texture2D" uid="uid://b44d3ch8u8g71" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="36_5gubt"]
 [ext_resource type="Texture2D" uid="uid://b0n7kduymh8jk" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_005.png" id="37_xr1gn"]
+[ext_resource type="Texture2D" uid="uid://fd3iqk3uiqnf" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_000.png" id="38_jrqxo"]
+[ext_resource type="Texture2D" uid="uid://b5kpy5sa83lfg" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_001.png" id="39_kpg8u"]
+[ext_resource type="Texture2D" uid="uid://be86m6xxft8id" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_002.png" id="40_2xdlu"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayeDashState.cs" id="41_0h2wk"]
+[ext_resource type="Texture2D" uid="uid://xm2nalsg7vns" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_003.png" id="41_anhy0"]
+[ext_resource type="Texture2D" uid="uid://crhggkeogxy4n" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_004.png" id="42_kond4"]
+[ext_resource type="Texture2D" uid="uid://ch1r62a7ofhnp" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_005.png" id="43_cdmy8"]
+[ext_resource type="Texture2D" uid="uid://c0axeotxdfd83" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_006.png" id="44_rvskv"]
+[ext_resource type="Texture2D" uid="uid://en3oivqixnjk" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_007.png" id="45_31ril"]
+[ext_resource type="Texture2D" uid="uid://c7ivprh12pmiy" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_008.png" id="46_4utrr"]
+[ext_resource type="Texture2D" uid="uid://cks4evsitxdjl" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_009.png" id="47_n4hex"]
+[ext_resource type="Texture2D" uid="uid://phs5uryldmrx" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_010.png" id="48_qb72j"]
+[ext_resource type="Texture2D" uid="uid://4auq3v7x418" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_011.png" id="49_e1pwo"]
 
 [sub_resource type="Animation" id="Animation_im3bx"]
 resource_name = "Idle"
@@ -108,12 +120,30 @@ tracks/0/keys = {
 "values": [ExtResource("32_ooebe"), ExtResource("33_mfsnp"), ExtResource("34_udifi"), ExtResource("35_i6b88"), ExtResource("36_5gubt"), ExtResource("37_xr1gn")]
 }
 
+[sub_resource type="Animation" id="Animation_2ugxl"]
+resource_name = "Slash"
+loop_mode = 1
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("38_jrqxo"), ExtResource("39_kpg8u"), ExtResource("40_2xdlu"), ExtResource("41_anhy0"), ExtResource("42_kond4"), ExtResource("43_cdmy8"), ExtResource("44_rvskv"), ExtResource("45_31ril"), ExtResource("46_4utrr"), ExtResource("47_n4hex"), ExtResource("48_qb72j"), ExtResource("49_e1pwo")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2onyk"]
 _data = {
 "Dash": SubResource("Animation_tluyh"),
 "Idle": SubResource("Animation_im3bx"),
 "Move": SubResource("Animation_lx7ym"),
-"RESET": SubResource("Animation_fhjho")
+"RESET": SubResource("Animation_fhjho"),
+"Slash": SubResource("Animation_2ugxl")
 }
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("animationPlayerNode", "sprite3DNode", "stateMachineNode")]
@@ -146,6 +176,7 @@ script = ExtResource("33_7vmoe")
 [node name="DashState" type="Node" parent="StateMachine" node_paths=PackedStringArray("dashTimerNode")]
 script = ExtResource("41_0h2wk")
 dashTimerNode = NodePath("Timer")
+speed = 8.0
 
 [node name="Timer" type="Timer" parent="StateMachine/DashState"]
 wait_time = 0.4

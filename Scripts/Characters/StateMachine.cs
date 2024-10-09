@@ -1,4 +1,5 @@
 using Godot;
+using my3dmobilegame.Scripts.Utils;
 using System;
 
 public partial class StateMachine : Node
@@ -24,9 +25,9 @@ public partial class StateMachine : Node
         if (newState == null) { return; }
 
 
-        currentState.Notification(5002);
+        currentState.Notification(GameContants.NOTIFICATION_EXIT_STATE);
         currentState = newState;
-        currentState.Notification(5001);
+        currentState.Notification(GameContants.NOTIFICATION_ENTER_STATE);
 
     }
 

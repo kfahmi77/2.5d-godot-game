@@ -4,6 +4,7 @@ using System;
 
 public partial class PlayerMoveState : PlayerState
 {
+    [Export(PropertyHint.Range, "0,20.01")] private float speed = 5;
     public override void _PhysicsProcess(double delta)
     {
         GD.Print("PlayerMoveState _PhysicsProcess");
@@ -13,7 +14,7 @@ public partial class PlayerMoveState : PlayerState
             return;
         }
         characterNode.Velocity = new(characterNode.direction.X, 0, characterNode.direction.Y);
-        characterNode.Velocity *= characterNode.speed;
+        characterNode.Velocity *= speed;
 
         characterNode.MoveAndSlide();
         characterNode.FlipSprite();

@@ -6,7 +6,7 @@ using System.Reflection.Metadata;
 public partial class PlayeDashState : PlayerState
 {
     [Export] private Timer dashTimerNode;
-    [Export] private float speed = 10;
+    [Export(PropertyHint.Range, "0,20,0.1")] private float speed = 10;
 
     public override void _Ready()
     {

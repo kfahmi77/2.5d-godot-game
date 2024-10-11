@@ -35,7 +35,6 @@
 [ext_resource type="Texture2D" uid="uid://c3f6ji6g3yfuk" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_000.png" id="32_ooebe"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerIdleState.cs" id="33_7vmoe"]
 [ext_resource type="Texture2D" uid="uid://cuifi3xybvpww" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_001.png" id="33_mfsnp"]
-[ext_resource type="Script" path="res://Scripts/Characters/StateMachine.cs" id="34_k41px"]
 [ext_resource type="Texture2D" uid="uid://5c8q8pw7myoi" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_002.png" id="34_udifi"]
 [ext_resource type="Texture2D" uid="uid://cnt2w82a2kjog" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_003.png" id="35_i6b88"]
 [ext_resource type="Texture2D" uid="uid://b44d3ch8u8g71" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="36_5gubt"]
@@ -53,6 +52,7 @@
 [ext_resource type="Texture2D" uid="uid://cks4evsitxdjl" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_009.png" id="47_n4hex"]
 [ext_resource type="Texture2D" uid="uid://phs5uryldmrx" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_010.png" id="48_qb72j"]
 [ext_resource type="Texture2D" uid="uid://4auq3v7x418" path="res://Assets/Sprites/Characters/Player/Slashing/Slashing_011.png" id="49_e1pwo"]
+[ext_resource type="PackedScene" uid="uid://ie2pl2xcmtd0" path="res://Scenes/Characters/state_machine.tscn" id="50_vaeld"]
 
 [sub_resource type="Animation" id="Animation_tluyh"]
 resource_name = "Dash"
@@ -169,8 +169,7 @@ libraries = {
 "": SubResource("AnimationLibrary_2onyk")
 }
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState", "states")]
-script = ExtResource("34_k41px")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("currentState", "states") instance=ExtResource("50_vaeld")]
 currentState = NodePath("IdleState")
 states = [NodePath("IdleState"), NodePath("MoveState"), NodePath("DashState")]
 

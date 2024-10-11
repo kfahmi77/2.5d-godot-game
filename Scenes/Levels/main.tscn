@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8dw0qlb2ww4t"]
+[gd_scene load_steps=6 format=3 uid="uid://c8dw0qlb2ww4t"]
 
 [ext_resource type="Script" path="res://Scripts/Levels/Main.cs" id="1_u4vwr"]
 [ext_resource type="PackedScene" uid="uid://b7yu8u7a624vf" path="res://Scenes/Characters/Player/player.tscn" id="2_uadev"]
 [ext_resource type="MeshLibrary" uid="uid://bixmedjdjgutx" path="res://Resources/tiles.tres" id="3_pdivi"]
+[ext_resource type="PackedScene" uid="uid://b8frbissi81hy" path="res://Scenes/Characters/Enemies/enemy.tscn" id="4_10hxt"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_04yyr"]
 size = Vector3(2.06458, 5.23828, 6.24969)
@@ -44,3 +45,6 @@ shape = SubResource("BoxShape3D_04yyr")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.30969, 2.6126, -5.51334)
 shape = SubResource("BoxShape3D_04yyr")
+
+[node name="Enemy" parent="." instance=ExtResource("4_10hxt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.29699, 1.88149, -1.2614)

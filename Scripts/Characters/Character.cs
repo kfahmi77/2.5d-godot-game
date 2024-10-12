@@ -13,9 +13,13 @@ public abstract partial class Character : CharacterBody3D
     [Export] public Sprite3D sprite3DNode;
     [Export] public StateMachine stateMachineNode;
 
-        public Vector2 direction = new();
+    [ExportGroup("AI Nodes")]
+    [Export] public Path3D PathNode { get; private set; }
+    [Export] public NavigationAgent3D AgentNode { get; private set; }
 
-      public void FlipSprite()
+    public Vector2 direction = new();
+
+    public void FlipSprite()
     {
         bool isNotMovingHorizontal = Math.Abs(Velocity.X) < 0.01;
 

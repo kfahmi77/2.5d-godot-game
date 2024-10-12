@@ -21,5 +21,11 @@ public abstract partial class EnemyState : CharacterState
         .DirectionTo(destination);
 
         characterNode.MoveAndSlide();
+        characterNode.FlipSprite();
+    }
+
+    protected void HanldeChaseAreaBodyEntered(Node3D body)
+    {
+        characterNode.stateMachineNode.SwitchState<EnemyChaseState>();
     }
 }

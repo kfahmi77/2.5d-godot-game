@@ -24,7 +24,7 @@ point_count = 8
 script = ExtResource("1_u4vwr")
 
 [node name="Player" parent="." instance=ExtResource("2_uadev")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.02193, 2.4107, -0.000865936)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.88679, 2.4107, -0.000865936)
 
 [node name="Camera3D" type="Camera3D" parent="Player"]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 2, 6)
